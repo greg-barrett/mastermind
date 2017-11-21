@@ -25,6 +25,7 @@ class Game
     puts "Please enter your guess.\n\n"
     player_guess=gets.chomp
     @player_guess_array= player_guess.split
+    end
   end
 
   def player_guess_array
@@ -54,6 +55,7 @@ class Game
       false
     end
   end
+
 end
 
 class Player
@@ -74,28 +76,25 @@ class Player
 end
 
 class Computer
-  #@colours=["red", "orange", "yellow", "green", "blue", "indigo", "violet"]
   def initialize
     @colours=["red", "orange", "yellow", "green", "blue", "indigo", "violet"]
-    pick_sequence
   end
 
-  def pick_sequence
-    @first= @colours[rand(0..6)]
-    @second= @colours[rand(0..6)]
-    @third= @colours[rand(0..6)]
-    @fourth= @colours[rand(0..6)]
-    @sequence=[@first, @second, @third, @fourth]
+  def rand_sequence
+    @rand_sequence=@colours.shuffle.take(4)
   end
+
 end
 
 #Game set up
 the_player=Player.new
 the_computer=Computer.new
-the_game=Game.new(the_player.name, the_computer.sequence)
+the_game=Game.new(the_player.name, the_computer.rand_sequence)
 
 #the_game.sequence
 the_game.instructions
+#the_game.sequence
+
 
 #game play
 round =1
